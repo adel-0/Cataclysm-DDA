@@ -39,11 +39,6 @@ extern std::vector<std::string> damage_indicators;
 // test_mode is not a regular game option; it's true when we are running unit
 // tests.
 extern bool test_mode;
-
-// agent_mode enables LLM agent control via JSON IPC on stdin/stdout.
-// Set via command line --agent flag.
-extern bool agent_mode;
-extern int agent_timeout_ms;
 enum class test_mode_spilling_action_t {
     spill_all,
     cancel_spill,
