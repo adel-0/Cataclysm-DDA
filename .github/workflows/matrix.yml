@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [0.H-branch]
     types: [opened, reopened, synchronize, ready_for_review]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to build'
+        required: false
+        default: '0.H-branch'
 
 # We only care about the latest revision of a PR, so cancel all previous instances.
 # Allow running master builds to complete to help with ccache refreshes.

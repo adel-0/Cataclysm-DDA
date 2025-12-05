@@ -655,6 +655,22 @@ class input_context
 #endif
 
         /**
+         * Get the category name for this input context.
+         * Used by agent mode to report the current UI context.
+         */
+        const std::string &get_category() const {
+            return category;
+        }
+
+        /**
+         * Get the list of registered actions for this context.
+         * Used by agent mode to report valid actions.
+         */
+        const std::vector<std::string> &get_registered_actions() const {
+            return registered_actions;
+        }
+
+        /**
          * Register an action with this input context.
          *
          * Only registered actions will be returned by `handle_input()`, it's
