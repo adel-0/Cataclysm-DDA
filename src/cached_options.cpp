@@ -7,6 +7,8 @@ bool log_from_top;
 int message_ttl;
 int message_cooldown;
 bool test_mode;
+bool agent_mode = false;
+int agent_timeout_ms = -1;
 int prevent_occlusion;
 bool prevent_occlusion_retract;
 bool prevent_occlusion_transp;

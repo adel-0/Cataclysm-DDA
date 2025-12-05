@@ -428,6 +428,26 @@ cli_opts parse_commandline( int argc, const char **argv )
                     result.disable_ascii_art = true;
                     return 0;
                 }
+            },
+            {
+                "--agent", {},
+                "Run in agent mode for LLM control via JSON IPC on stdin/stdout",
+                section_default,
+                0,
+                []( int, const char ** ) -> int {
+                    agent_mode = true;
+                    return 0;
+                }
+            },
+            {
+                "--agent-timeout", "<milliseconds>",
+                "Timeout for agent input in milliseconds (-1 for infinite, default)",
+                section_default,
+                1,
+                []( int, const char **params ) -> int {
+                    agent_timeout_ms = std::stoi( params[0] );
+                    return 1;
+                }
             }
         }
     };
