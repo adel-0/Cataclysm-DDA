@@ -18,6 +18,7 @@
 #include <utility>
 
 #include "action.h"
+#include "agent_mode.h"
 #include "cached_options.h"
 #include "cata_utility.h"
 #include "catacharset.h"
@@ -1194,6 +1195,16 @@ const std::string &input_context::handle_input()
 
 const std::string &input_context::handle_input( const int timeout )
 {
+    // Agent mode: send observation and wait for agent command instead of keyboard input
+    if( agent_mode ) {
+        static std::string agent_action;
+        agent_action = agent::wait_for_input( *this );
+        if( !agent_action.empty() ) {
+            return agent_action;
+        }
+        return TIMEOUT;
+    }
+
     const int old_timeout = inp_mngr.get_timeout();
     if( timeout >= 0 ) {
         inp_mngr.set_timeout( timeout );
